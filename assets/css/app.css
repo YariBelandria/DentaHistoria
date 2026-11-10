@@ -3648,7 +3648,7 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 38px 18px;
+    padding: 20px 18px;
     background:
         radial-gradient(620px 420px at 12% 8%, rgba(20, 184, 166, 0.35), transparent 62%),
         radial-gradient(560px 380px at 92% 92%, rgba(14, 165, 233, 0.22), transparent 60%),
@@ -3658,14 +3658,14 @@ a {
 .register-card {
     width: 100%;
     max-width: 470px;
-    padding: 32px 32px 26px;
+    padding: 24px 32px 20px;
     background: #fff;
     border-radius: 22px;
     box-shadow: 0 34px 80px -34px rgba(2, 44, 42, 0.75);
 }
 
 .register-card .brand {
-    margin-bottom: 24px;
+    margin-bottom: 16px;
 }
 
 .register-card .brand-copy strong {
@@ -3676,21 +3676,121 @@ a {
     color: var(--brand-600);
 }
 
+.register-card .login-heading {
+    margin-bottom: 14px;
+}
+
+.register-card .login-heading h2 {
+    font-size: 1.55rem;
+}
+
+.register-card .login-heading p {
+    font-size: 0.72rem;
+}
+
 .register-form .form-field {
-    margin-bottom: 13px;
+    margin-bottom: 9px;
+}
+
+.register-form .input-icon .form-control {
+    height: 42px;
+}
+
+.register-form .btn-login {
+    height: 44px;
+    margin-top: 4px;
 }
 
 .register-hint {
-    margin: 5px 0 0;
-    font-size: 0.6rem;
+    margin: 3px 0 0;
+    font-size: 0.56rem;
     color: var(--muted-light);
 }
 
+.register-card .login-switch {
+    margin-top: 10px;
+    font-size: 0.66rem;
+}
+
+.register-card .login-foot {
+    margin-top: 10px;
+}
+
 @media (max-width: 575.98px) {
+    .register-shell {
+        align-items: flex-start;
+        padding: 16px 14px;
+    }
+
     .register-card {
-        padding: 26px 20px 22px;
+        padding: 22px 20px 18px;
         border-radius: 18px;
     }
+}
+
+/* En pantallas bajas el formulario se compacta para que el botón quede visible. */
+@media (max-height: 700px) {
+    .register-shell {
+        align-items: flex-start;
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+
+    .register-card {
+        padding-top: 18px;
+        padding-bottom: 16px;
+    }
+
+    .register-card .brand {
+        margin-bottom: 10px;
+    }
+
+    .register-card .login-heading {
+        margin-bottom: 10px;
+    }
+
+    .register-card .login-heading p {
+        display: none;
+    }
+
+    .register-form .form-field {
+        margin-bottom: 6px;
+    }
+
+    .register-form .input-icon .form-control {
+        height: 38px;
+    }
+
+    .register-hint {
+        display: none;
+    }
+
+    .register-form .btn-login {
+        height: 40px;
+    }
+
+    .register-card .login-switch {
+        margin-top: 8px;
+    }
+
+    .register-card .login-foot {
+        margin-top: 8px;
+    }
+}
+
+/* Formularios dentro de modales scrollable: el cuerpo se desplaza y el footer
+   con el botón de guardar queda siempre visible. */
+.modal-dialog-scrollable .modal-content > form {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    max-height: 100%;
+    overflow: hidden;
+}
+
+.modal-dialog-scrollable .modal-content > form .modal-body {
+    min-height: 0;
+    overflow-y: auto;
 }
 
 /* ---------- Responsive ---------- */
