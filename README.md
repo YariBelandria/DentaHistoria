@@ -6,6 +6,13 @@ Proyecto académico desarrollado con **PHP, MySQL, AJAX y Bootstrap 5**, sin fra
 
 ![Pantalla de inicio de sesión](docs/screenshots/login.png)
 
+## Demo en vivo
+
+- **Aplicación publicada:** [https://dentahistoria.kesug.com](https://dentahistoria.kesug.com)
+- **Repositorio:** [github.com/YariBelandria/DentaHistoria](https://github.com/YariBelandria/DentaHistoria)
+
+El registro de nuevas cuentas está habilitado y protegido con el código de invitación `DENTA-2026`.
+
 ## Funcionalidades
 
 - **Autenticación con sesiones**: inicio y cierre de sesión, contraseñas con `password_hash`, protección CSRF y límite básico de intentos.
@@ -23,7 +30,7 @@ Proyecto académico desarrollado con **PHP, MySQL, AJAX y Bootstrap 5**, sin fra
 
 | Capa | Tecnología |
 | --- | --- |
-| Servidor | PHP 8.0+ (probado en PHP 8.3) |
+| Servidor | PHP 8.2–8.4 (probado en PHP 8.4) |
 | Base de datos | MySQL 5.7+ / MariaDB 10.3+ |
 | Acceso a datos | PDO con consultas preparadas |
 | Frontend | Bootstrap 5.3.3, Bootstrap Icons, CSS propio |
@@ -64,7 +71,8 @@ DentaHistoria/
 │   └── js/               Lógica AJAX por pantalla
 ├── database/
 │   ├── schema.sql        Creación de tablas
-│   └── seed.sql          Datos de demostración
+│   ├── seed.sql          Datos de demostración
+│   └── instalacion-completa.sql  Esquema + datos en un solo archivo
 ├── docs/                 Manual de usuario, documentación técnica y capturas
 ├── includes/
 │   ├── auth.php          Sesiones y permisos
@@ -144,11 +152,11 @@ InfinityFree ofrece hospedaje PHP + MySQL sin costo. Estos son los pasos:
 2. En el panel de control abre **MySQL Databases** y crea una base de datos. Anota:
    - **MySQL Host** (normalmente `sqlXXX.infinityfree.com`, no `localhost`),
    - **Database Name** (suele iniciar con `if0_`),
-   - **Username** y **Password**.
-3. Abre **phpMyAdmin** desde el panel, selecciona la base de datos e importa `database/schema.sql`. Importa también `database/seed.sql` si quieres datos de demostración.
+   - **Username** y **Password**. En InfinityFree la contraseña de MySQL es la misma de la **cuenta de hosting** (Panel de Control / FTP), no la de `dash.infinityfree.com`.
+3. Abre **phpMyAdmin** desde el panel, selecciona la base de datos e importa `database/instalacion-completa.sql`. Ese archivo crea las 7 tablas y carga los datos de demostración en un solo paso. Si prefieres hacerlo por separado, importa primero `database/schema.sql` y después `database/seed.sql`.
 4. Sube todos los archivos del proyecto a la carpeta `htdocs` usando el **File Manager** o un cliente FTP (FileZilla). Mantén la estructura de carpetas.
 5. Crea en el servidor el archivo `includes/config.local.php` con los datos reales de tu base de datos (puedes copiar `includes/config.local.example.php` y editarlo desde el File Manager). Ajusta también `app.registration.code` con un código privado y compártelo solo con las personas que deben registrarse.
-6. Verifica que la versión de PHP sea 8.2 o 8.3 en **PHP Configuration**.
+6. Verifica que la versión de PHP sea 8.3 o 8.4 en **PHP Configuration** y que estén activas las extensiones `pdo_mysql`, `mbstring` e `iconv`.
 7. Abre tu subdominio. La pantalla de inicio de sesión debe aparecer; prueba con el usuario administrador.
 8. Si vas a usar datos reales, cambia las contraseñas de demostración y elimina los pacientes de ejemplo.
 
@@ -159,7 +167,7 @@ InfinityFree ofrece hospedaje PHP + MySQL sin costo. Estos son los pasos:
 | Síntoma | Causa probable | Solución |
 | --- | --- | --- |
 | “No se pudo conectar con la base de datos” | Datos incorrectos o host `localhost` | Usa el host MySQL que muestra InfinityFree |
-| Error 500 al abrir la app | Versión de PHP o `.htaccess` incompatible | Cambia a PHP 8.2/8.3 y revisa los logs |
+| Error 500 al abrir la app | Versión de PHP o `.htaccess` incompatible | Cambia a PHP 8.3/8.4 y revisa los logs |
 | El PDF no descarga | Falta la carpeta `vendor/fpdf/font` | Sube la carpeta completa `vendor/fpdf/` |
 | No aparecen los estilos | Ruta base incorrecta | Sube el contenido a `htdocs` respetando carpetas |
 
