@@ -17,6 +17,20 @@ Con los datos de demostración puedes usar:
 
 > En producción cambia estas contraseñas y desactiva el bloque de demostración con `'demo' => false` en `includes/config.local.php`.
 
+### Crear una cuenta propia
+
+Si no tienes usuario, entra en **Crear una cuenta** desde la pantalla de inicio de sesión o abre directamente `registro.php`. Completa:
+
+- Nombre completo.
+- Correo electrónico personal o institucional.
+- Contraseña de al menos 8 caracteres.
+- Confirmación de la contraseña.
+- Código de invitación entregado por el administrador.
+
+Al terminar, la cuenta se crea con rol **odontólogo** y la sesión se inicia automáticamente. En los siguientes accesos podrás entrar con tu propio correo y contraseña, sin usar cuentas genéricas.
+
+El administrador puede cambiar el código de invitación o desactivar el registro desde `includes/config.local.php`.
+
 ## 2. Panel principal
 
 El panel muestra:

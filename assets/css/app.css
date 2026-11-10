@@ -3625,6 +3625,74 @@ a {
     color: var(--brand-500);
 }
 
+.login-switch {
+    margin: 16px 0 0;
+    text-align: center;
+    font-size: 0.7rem;
+    color: var(--muted);
+}
+
+.login-switch a {
+    color: var(--brand-700);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.login-switch a:hover {
+    text-decoration: underline;
+}
+
+/* Registro de usuarios */
+.register-shell {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 38px 18px;
+    background:
+        radial-gradient(620px 420px at 12% 8%, rgba(20, 184, 166, 0.35), transparent 62%),
+        radial-gradient(560px 380px at 92% 92%, rgba(14, 165, 233, 0.22), transparent 60%),
+        linear-gradient(145deg, #072e2e 0%, #0a3a39 48%, #0d4541 100%);
+}
+
+.register-card {
+    width: 100%;
+    max-width: 470px;
+    padding: 32px 32px 26px;
+    background: #fff;
+    border-radius: 22px;
+    box-shadow: 0 34px 80px -34px rgba(2, 44, 42, 0.75);
+}
+
+.register-card .brand {
+    margin-bottom: 24px;
+}
+
+.register-card .brand-copy strong {
+    color: var(--ink);
+}
+
+.register-card .brand-copy small {
+    color: var(--brand-600);
+}
+
+.register-form .form-field {
+    margin-bottom: 13px;
+}
+
+.register-hint {
+    margin: 5px 0 0;
+    font-size: 0.6rem;
+    color: var(--muted-light);
+}
+
+@media (max-width: 575.98px) {
+    .register-card {
+        padding: 26px 20px 22px;
+        border-radius: 18px;
+    }
+}
+
 /* ---------- Responsive ---------- */
 @media (min-width: 992px) {
     .app-shell {

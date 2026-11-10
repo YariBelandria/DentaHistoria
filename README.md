@@ -9,6 +9,7 @@ Proyecto académico desarrollado con **PHP, MySQL, AJAX y Bootstrap 5**, sin fra
 ## Funcionalidades
 
 - **Autenticación con sesiones**: inicio y cierre de sesión, contraseñas con `password_hash`, protección CSRF y límite básico de intentos.
+- **Registro de usuarios**: cada persona crea su cuenta con su propio correo y contraseña. El registro se protege con un código de invitación configurable.
 - **Panel principal**: indicadores de pacientes, atenciones del mes, procedimientos activos y próximas citas; gráficos de actividad y distribución por especialidad.
 - **Gestión de pacientes**: registro, edición, búsqueda, filtros, paginación y eliminación (solo administrador). Cada paciente recibe un código `PAC-XXXX`.
 - **Historia clínica**: línea de tiempo de atenciones con fecha, hora, motivo, diagnóstico, tratamiento, observaciones, estado, piezas dentales y próximas citas.
@@ -39,6 +40,19 @@ Proyecto académico desarrollado con **PHP, MySQL, AJAX y Bootstrap 5**, sin fra
 
 > Cambia estas credenciales antes de usar el sistema con datos reales.
 
+También puedes crear una cuenta propia desde `registro.php`. El formulario pide nombre, correo, contraseña y el código de invitación configurado en `includes/config.local.php` (por defecto `DENTA-2026`). Así el profesor o cualquier odontólogo entra con su propio correo y su propia contraseña, sin compartir una cuenta genérica.
+
+Para cambiar el código de invitación, edita `includes/config.local.php`:
+
+```php
+'app' => [
+    'registration' => [
+        'enabled' => true,
+        'code'    => 'TU-CODIGO-PRIVADO',
+    ],
+],
+```
+
 ## Estructura del proyecto
 
 ```text
@@ -64,6 +78,7 @@ DentaHistoria/
 ├── pdf/historia.php      Generación del PDF
 ├── vendor/fpdf/          Librería FPDF 1.9
 ├── index.php             Inicio de sesión
+├── registro.php          Registro de nuevas cuentas
 ├── dashboard.php         Panel principal
 ├── pacientes.php         Listado y formulario de pacientes
 ├── paciente.php          Historia clínica del paciente
@@ -132,7 +147,7 @@ InfinityFree ofrece hospedaje PHP + MySQL sin costo. Estos son los pasos:
    - **Username** y **Password**.
 3. Abre **phpMyAdmin** desde el panel, selecciona la base de datos e importa `database/schema.sql`. Importa también `database/seed.sql` si quieres datos de demostración.
 4. Sube todos los archivos del proyecto a la carpeta `htdocs` usando el **File Manager** o un cliente FTP (FileZilla). Mantén la estructura de carpetas.
-5. Crea en el servidor el archivo `includes/config.local.php` con los datos reales de tu base de datos (puedes copiar `includes/config.local.example.php` y editarlo desde el File Manager).
+5. Crea en el servidor el archivo `includes/config.local.php` con los datos reales de tu base de datos (puedes copiar `includes/config.local.example.php` y editarlo desde el File Manager). Ajusta también `app.registration.code` con un código privado y compártelo solo con las personas que deben registrarse.
 6. Verifica que la versión de PHP sea 8.2 o 8.3 en **PHP Configuration**.
 7. Abre tu subdominio. La pantalla de inicio de sesión debe aparecer; prueba con el usuario administrador.
 8. Si vas a usar datos reales, cambia las contraseñas de demostración y elimina los pacientes de ejemplo.

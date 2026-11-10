@@ -7,6 +7,7 @@ if (auth_check()) {
 }
 
 $demo = !empty(app_config('app.demo'));
+$registrationEnabled = !empty(app_config('app.registration.enabled'));
 $loggedOut = isset($_GET['logout']);
 $appName = app_config('app.name', 'DentaHistoria');
 $clinicName = app_config('app.clinic', 'Clínica Dental');
@@ -168,6 +169,10 @@ $clinicName = app_config('app.clinic', 'Clínica Dental');
                     <i class="bi bi-arrow-right"></i>
                 </button>
             </form>
+
+            <?php if ($registrationEnabled): ?>
+                <p class="login-switch">¿No tienes cuenta? <a href="registro.php">Crear una cuenta</a></p>
+            <?php endif; ?>
 
             <?php if ($demo): ?>
                 <div class="demo-box">

@@ -19,6 +19,11 @@ $config = [
         'timezone'    => 'America/Caracas',
         'demo'        => true,
         'debug'       => getenv('APP_DEBUG') === '1',
+        // Registro público de odontólogos. Cambia el código en config.local.php.
+        'registration' => [
+            'enabled' => getenv('REGISTRATION_ENABLED') !== '0',
+            'code'    => getenv('REGISTRATION_CODE') ?: 'DENTA-2026',
+        ],
     ],
     'db' => [
         'host'    => getenv('DB_HOST') ?: '127.0.0.1',

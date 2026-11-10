@@ -24,5 +24,10 @@ return [
         'debug' => false,
         // Oculta el cuadro con las credenciales de demostración en el login.
         'demo'  => false,
+        // Registro de nuevas cuentas. Cambia el código antes de publicar.
+        'registration' => [
+            'enabled' => true,
+            'code'    => 'CAMBIA-ESTE-CODIGO',
+        ],
     ],
 ];

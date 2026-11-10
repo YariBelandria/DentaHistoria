@@ -67,7 +67,7 @@ Todas las respuestas usan el formato:
 
 | Endpoint | Acciones |
 | --- | --- |
-| `api/auth.php` | `login`, `session` |
+| `api/auth.php` | `login`, `register`, `session` |
 | `api/dashboard.php` | `stats` |
 | `api/pacientes.php` | `list`, `get`, `save`, `delete` |
 | `api/atenciones.php` | `list`, `get`, `save`, `delete` |
@@ -86,6 +86,7 @@ Las peticiones `POST` requieren el token CSRF enviado en la cabecera `X-CSRF-Tok
 - Validación de sesión en cada página y endpoint mediante `require_login()`.
 - Permisos por rol: solo el administrador elimina pacientes; cada odontólogo edita sus atenciones.
 - Límite básico de intentos de inicio de sesión.
+- Registro protegido con código de invitación y validación de correo único; los usuarios creados desde el registro reciben rol `odontologo`.
 - `.htaccess` bloquea el acceso directo a `includes/`, `database/` y `vendor/`.
 - Registro de auditoría de acciones principales.
 
@@ -116,8 +117,14 @@ En producción configura:
 'app' => [
     'demo'  => false,
     'debug' => false,
+    'registration' => [
+        'enabled' => true,
+        'code'    => 'TU-CODIGO-PRIVADO',
+    ],
 ],
 ```
+
+El registro público crea usuarios con rol `odontologo`. Para cerrarlo, usa `'enabled' => false`; para permitir registro sin código, deja `'code' => ''`.
 
 ## 9. Instalación local
 
