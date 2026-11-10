@@ -56,8 +56,13 @@ foreach ($chartStmt->fetchAll() as $chartRow) {
 function pdf_text($text): string
 {
     $text = (string) $text;
-    $converted = iconv('UTF-8', 'WINDOWS-1252//TRANSLIT', $text);
-    return $converted !== false ? $converted : preg_replace('/[^\x20-\x7E]/', '', $text);
+    if (function_exists('iconv')) {
+        $converted = iconv('UTF-8', 'WINDOWS-1252//TRANSLIT', $text);
+        if ($converted !== false) {
+            return $converted;
+        }
+    }
+    return preg_replace('/[^\x20-\x7E]/', '', $text);
 }
 
 class ClinicalHistoryPDF extends FPDF
@@ -461,7 +466,7 @@ $pdf->Cell(75, 4, pdf_text('Firma y sello del odontólogo'), 0, 1, 'C');
 $pdf->SetX(120);
 $pdf->Cell(75, 4, pdf_text(app_config('app.doctor', '')), 0, 1, 'C');
 
-$safeName = iconv('UTF-8', 'ASCII//TRANSLIT', $fullName);
+$safeName = function_exists('iconv') ? iconv('UTF-8', 'ASCII//TRANSLIT', $fullName) : false;
 $safeName = preg_replace('/[^A-Za-z0-9]+/', '_', $safeName !== false ? $safeName : $fullName);
 $filename = 'Historia_' . $pdf->code . '_' . trim((string) $safeName, '_');
 $filename = trim($filename, '_') . '.pdf';
