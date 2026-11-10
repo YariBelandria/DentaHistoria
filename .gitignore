@@ -1,0 +1,15 @@
+# Dependencias y archivos locales
+includes/config.local.php
+*.local.php
+.DS_Store
+Thumbs.db
+*.log
+
+# Empaquetados de despliegue
+/dentahistoria-deploy.zip
+/backup-*.sql
+
+# Entornos de editor
+.idea/
+.vscode/
+*.swp
