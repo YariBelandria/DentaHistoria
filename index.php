@@ -17,18 +17,22 @@ $clinicName = app_config('app.clinic', 'Clínica Dental');
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#0f766e">
+    <meta name="theme-color" content="#1a5ab0">
     <?= csrf_meta_tag() ?>
     <title>Iniciar sesión · <?= e($appName) ?></title>
     <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+    <?php require __DIR__ . '/includes/layout/theme-init.php'; ?>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <link href="assets/css/app.css" rel="stylesheet">
 </head>
 <body class="login-body">
+<button class="btn theme-toggle theme-toggle-floating" type="button" data-theme-toggle aria-label="Cambiar a modo oscuro" title="Cambiar a modo oscuro">
+    <i class="bi bi-moon-stars-fill" data-theme-icon aria-hidden="true"></i>
+</button>
 <div class="login-shell">
     <section class="login-showcase">
         <div class="showcase-orbit showcase-orbit-1" aria-hidden="true"></div>
@@ -37,9 +41,7 @@ $clinicName = app_config('app.clinic', 'Clínica Dental');
 
         <a class="brand brand-light" href="index.php">
             <span class="brand-mark">
-                <svg viewBox="0 0 64 64" aria-hidden="true">
-                    <path d="M32 6.5c-7.7 0-11.2 3-17.6 3-3.3 0-6.4 2.3-6.4 7.1 0 7.4 4.2 10.6 5.4 17.7 1 7.5 1.1 19.7 6.1 19.7 4.4 0 4.1-9.3 6.2-14.2 1.2-3.9 2.6-5.8 6.3-5.8s5.1 1.9 6.3 5.8c2.1 4.9 1.8 14.2 6.2 14.2 5 0 5.1-12.2 6.1-19.7 1.2-7.1 5.4-10.3 5.4-17.7 0-4.8-3.1-7.1-6.4-7.1C43.2 9.5 39.7 6.5 32 6.5Z" fill="currentColor"/>
-                </svg>
+                <img src="assets/img/logo-mark.svg" alt="" width="44" height="44">
             </span>
             <span class="brand-copy">
                 <strong><?= e($appName) ?></strong>
@@ -108,9 +110,7 @@ $clinicName = app_config('app.clinic', 'Clínica Dental');
         <div class="login-card">
             <div class="login-mobile-brand">
                 <span class="brand-mark">
-                    <svg viewBox="0 0 64 64" aria-hidden="true">
-                        <path d="M32 6.5c-7.7 0-11.2 3-17.6 3-3.3 0-6.4 2.3-6.4 7.1 0 7.4 4.2 10.6 5.4 17.7 1 7.5 1.1 19.7 6.1 19.7 4.4 0 4.1-9.3 6.2-14.2 1.2-3.9 2.6-5.8 6.3-5.8s5.1 1.9 6.3 5.8c2.1 4.9 1.8 14.2 6.2 14.2 5 0 5.1-12.2 6.1-19.7 1.2-7.1 5.4-10.3 5.4-17.7 0-4.8-3.1-7.1-6.4-7.1C43.2 9.5 39.7 6.5 32 6.5Z" fill="currentColor"/>
-                    </svg>
+                    <img src="assets/img/logo-mark.svg" alt="" width="44" height="44">
                 </span>
                 <span class="brand-copy">
                     <strong><?= e($appName) ?></strong>

@@ -4,6 +4,84 @@
 
     const App = {};
 
+    const THEME_KEY = 'dentahistoria-theme';
+
+    App.getTheme = () => {
+        const current = document.documentElement.getAttribute('data-theme');
+        if (current === 'light' || current === 'dark') return current;
+        try {
+            const stored = localStorage.getItem(THEME_KEY);
+            if (stored === 'light' || stored === 'dark') return stored;
+        } catch (error) {
+            /* almacenamiento no disponible */
+        }
+        return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    };
+
+    App.applyTheme = (theme, persist = true) => {
+        const next = theme === 'dark' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', next);
+        document.documentElement.style.colorScheme = next;
+
+        if (persist) {
+            try {
+                localStorage.setItem(THEME_KEY, next);
+            } catch (error) {
+                /* almacenamiento no disponible */
+            }
+        }
+
+        const meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute('content', next === 'dark' ? '#101b2d' : '#1a5ab0');
+
+        document.querySelectorAll('[data-theme-toggle]').forEach((button) => {
+            const icon = button.querySelector('[data-theme-icon]');
+            const label = next === 'dark' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro';
+            if (icon) icon.className = next === 'dark' ? 'bi bi-sun-fill' : 'bi bi-moon-stars-fill';
+            button.setAttribute('aria-label', label);
+            button.setAttribute('title', label);
+            button.setAttribute('aria-pressed', next === 'dark' ? 'true' : 'false');
+        });
+
+        document.dispatchEvent(new CustomEvent('dh:themechange', { detail: { theme: next } }));
+    };
+
+    App.toggleTheme = () => {
+        App.applyTheme(App.getTheme() === 'dark' ? 'light' : 'dark');
+    };
+
+    App.initTheme = () => {
+        App.applyTheme(App.getTheme(), false);
+
+        document.addEventListener('click', (event) => {
+            const button = event.target.closest('[data-theme-toggle]');
+            if (!button) return;
+            event.preventDefault();
+            App.toggleTheme();
+        });
+
+        if (window.matchMedia) {
+            const media = window.matchMedia('(prefers-color-scheme: dark)');
+            const onChange = (event) => {
+                let stored = null;
+                try {
+                    stored = localStorage.getItem(THEME_KEY);
+                } catch (error) {
+                    stored = null;
+                }
+                if (!stored) App.applyTheme(event.matches ? 'dark' : 'light', false);
+            };
+            if (typeof media.addEventListener === 'function') media.addEventListener('change', onChange);
+            else if (typeof media.addListener === 'function') media.addListener(onChange);
+        }
+
+        window.addEventListener('storage', (event) => {
+            if (event.key === THEME_KEY && (event.newValue === 'light' || event.newValue === 'dark')) {
+                App.applyTheme(event.newValue, false);
+            }
+        });
+    };
+
     App.csrf = () => {
         const meta = document.querySelector('meta[name="csrf-token"]');
         return meta ? meta.getAttribute('content') : '';
@@ -222,6 +300,12 @@
         if (status === 'seguimiento') return 'En seguimiento';
         return 'Realizado';
     };
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', App.initTheme);
+    } else {
+        App.initTheme();
+    }
 
     window.App = App;
 })();

@@ -1,5 +1,23 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="DentaHistoria">
+  <defs>
+    <linearGradient id="pdf-bg" x1="18" y1="10" x2="184" y2="192" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#143f7c"/>
+      <stop offset="0.52" stop-color="#1f6fd0"/>
+      <stop offset="1" stop-color="#56c8f5"/>
+    </linearGradient>
+    <linearGradient id="pdf-tooth" x1="100" y1="40" x2="100" y2="164" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#dcefff"/>
+    </linearGradient>
+    <linearGradient id="pdf-smile" x1="68" y1="116" x2="132" y2="130" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#8fdcff"/>
+      <stop offset="1" stop-color="#2eb7ec"/>
+    </linearGradient>
+  </defs>
   <rect width="200" height="200" rx="46" fill="#ffffff"/>
-  <rect x="10" y="10" width="180" height="180" rx="38" fill="#0f766e"/>
-  <path d="M100 36c-20 0-29 7.8-45.7 7.8-8.6 0-16.6 6-16.6 18.4 0 19.2 11 27.5 14 45.9 2.7 19.5 3 50.9 15.7 50.9 11.5 0 10.7-24 16-36.7 3.2-10 6.9-15 16.6-15s13.4 5 16.6 15c5.3 12.7 4.5 36.7 16 36.7 12.7 0 13-31.4 15.7-50.9 3-18.4 14-26.7 14-45.9 0-12.4-8-18.4-16.6-18.4C129 43.8 120 36 100 36Z" fill="#ffffff"/>
+  <rect x="10" y="10" width="180" height="180" rx="38" fill="url(#pdf-bg)"/>
+  <circle cx="153" cy="44" r="40" fill="#ffffff" opacity="0.12"/>
+  <path d="M100 41c-21 0-31 8.4-48 8.4-9.4 0-17.5 6.5-17.5 19.7 0 20.3 11.6 29 14.7 48.4 2.8 20.6 3.1 53.7 16.6 53.7 12.2 0 11.3-25.3 16.9-38.7 3.4-10.6 7.2-15.9 17.3-15.9s13.9 5.3 17.3 15.9c5.6 13.4 4.7 38.7 16.9 38.7 13.5 0 13.8-33.1 16.6-53.7 3.1-19.4 14.7-28.1 14.7-48.4 0-13.2-8.1-19.7-17.5-19.7-17 0-27-8.4-48-8.4Z" fill="url(#pdf-tooth)"/>
+  <path d="M73 119c6.9 10.3 16 15.6 27 15.6s20.1-5.3 27-15.6" fill="none" stroke="url(#pdf-smile)" stroke-width="8.4" stroke-linecap="round"/>
+  <path d="M148 35l4 11 11 4-11 4-4 11-4-11-11-4 11-4 4-11Z" fill="#c8f2ff"/>
 </svg>

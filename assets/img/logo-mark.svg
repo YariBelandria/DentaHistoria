@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="DentaHistoria">
+  <defs>
+    <linearGradient id="dh-bg" x1="6" y1="3" x2="59" y2="62" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#143f7c"/>
+      <stop offset="0.52" stop-color="#1f6fd0"/>
+      <stop offset="1" stop-color="#56c8f5"/>
+    </linearGradient>
+    <linearGradient id="dh-tooth" x1="32" y1="13" x2="32" y2="53" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#dcefff"/>
+    </linearGradient>
+    <linearGradient id="dh-smile" x1="22" y1="37" x2="42" y2="42" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#8fdcff"/>
+      <stop offset="1" stop-color="#2eb7ec"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="64" height="64" rx="17" fill="url(#dh-bg)"/>
+  <circle cx="49" cy="14" r="13" fill="#ffffff" opacity="0.12"/>
+  <circle cx="12" cy="52" r="16" fill="#0b2a50" opacity="0.18"/>
+
+  <path d="M32 13.4c-6.7 0-9.8 2.7-15.3 2.7-3 0-5.6 2.1-5.6 6.3 0 6.5 3.7 9.3 4.7 15.5.9 6.6 1 17.2 5.3 17.2 3.9 0 3.6-8.1 5.4-12.4 1.1-3.4 2.3-5.1 5.5-5.1s4.4 1.7 5.5 5.1c1.8 4.3 1.5 12.4 5.4 12.4 4.3 0 4.4-10.6 5.3-17.2 1-6.2 4.7-9 4.7-15.5 0-4.2-2.6-6.3-5.6-6.3-5.5 0-8.6-2.7-15.3-2.7Z" fill="url(#dh-tooth)"/>
+
+  <path d="M23.4 38.2c2.2 3.3 5.1 5 8.6 5s6.4-1.7 8.6-5" fill="none" stroke="url(#dh-smile)" stroke-width="2.7" stroke-linecap="round"/>
+
+  <path d="M47.5 12.1l1.3 3.5 3.5 1.3-3.5 1.3-1.3 3.5-1.3-3.5-3.5-1.3 3.5-1.3 1.3-3.5Z" fill="#c8f2ff"/>
+  <circle cx="14.5" cy="17.5" r="1.5" fill="#c8f2ff" opacity="0.8"/>
+</svg>

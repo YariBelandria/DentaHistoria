@@ -1,8 +1,41 @@
 (function () {
     'use strict';
 
-    const bodyFont = getComputedStyle(document.body).fontFamily || 'Plus Jakarta Sans, sans-serif';
-    const palette = ['#0d9488', '#0ea5e9', '#8b5cf6', '#f59e0b', '#ec4899', '#10b981', '#f97316', '#6366f1'];
+    const bodyFont = () => getComputedStyle(document.body).fontFamily || 'Plus Jakarta Sans, sans-serif';
+    const cssVar = (name, fallback) => {
+        const value = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+        return value || fallback;
+    };
+    const hexToRgb = (hex) => {
+        const clean = String(hex).replace('#', '').trim();
+        if (!/^[0-9a-f]{6}$/i.test(clean)) return '47, 140, 232';
+        return [0, 2, 4].map((index) => parseInt(clean.slice(index, index + 2), 16)).join(', ');
+    };
+    const alpha = (hex, opacity) => `rgba(${hexToRgb(hex)}, ${opacity})`;
+    const chartPalette = () => [
+        cssVar('--brand-600', '#2478dd'),
+        cssVar('--celeste-500', '#2eb7ec'),
+        cssVar('--violet', '#8b5cf6'),
+        cssVar('--warning', '#d97706'),
+        cssVar('--info', '#0ea5e9'),
+        cssVar('--success', '#10b981'),
+        cssVar('--pink-text', '#be185d'),
+        cssVar('--accent-strong', '#1a5ab0')
+    ];
+    const chartTheme = () => ({
+        accent: cssVar('--accent', '#2478dd'),
+        ink: cssVar('--ink', '#12233c'),
+        muted: cssVar('--muted-light', '#8699b3'),
+        line: cssVar('--line-soft', '#e4eefa'),
+        card: cssVar('--card', '#f9fcff'),
+        tooltipBg: document.documentElement.getAttribute('data-theme') === 'dark' ? '#0b1524' : '#12233c',
+        tooltipText: '#f3f9ff',
+        palette: chartPalette(),
+        font: bodyFont()
+    });
+
+    let chartInstances = [];
+    let latestChartData = null;
 
     const setText = (id, value) => {
         const el = document.getElementById(id);
@@ -119,6 +152,22 @@
     const initCharts = (data) => {
         if (!window.Chart) return;
 
+        latestChartData = data;
+        chartInstances.forEach((chart) => chart.destroy());
+        chartInstances = [];
+
+        const theme = chartTheme();
+        const font = theme.font;
+        const baseTooltip = {
+            backgroundColor: theme.tooltipBg,
+            titleColor: theme.tooltipText,
+            bodyColor: theme.tooltipText,
+            padding: 12,
+            cornerRadius: 10,
+            titleFont: { family: font, weight: '700' },
+            bodyFont: { family: font }
+        };
+
         const monthlyCanvas = document.getElementById('monthlyChart');
         const monthlyEmpty = document.getElementById('monthlyEmpty');
         const total = data.monthly.values.reduce((sum, value) => sum + Number(value), 0);
@@ -128,21 +177,23 @@
                 monthlyCanvas.classList.add('d-none');
                 monthlyEmpty?.classList.remove('d-none');
             } else {
-                new Chart(monthlyCanvas, {
+                monthlyCanvas.classList.remove('d-none');
+                monthlyEmpty?.classList.add('d-none');
+                const monthlyChart = new Chart(monthlyCanvas, {
                     type: 'line',
                     data: {
                         labels: data.monthly.labels,
                         datasets: [{
                             label: 'Atenciones',
                             data: data.monthly.values,
-                            borderColor: '#0d9488',
+                            borderColor: theme.accent,
                             backgroundColor: (context) => {
                                 const chart = context.chart;
                                 const { ctx, chartArea } = chart;
-                                if (!chartArea) return 'rgba(13, 148, 136, 0.12)';
+                                if (!chartArea) return alpha(theme.accent, 0.12);
                                 const gradient = ctx.createLinearGradient(0, chartArea.top, 0, chartArea.bottom);
-                                gradient.addColorStop(0, 'rgba(20, 184, 166, 0.28)');
-                                gradient.addColorStop(1, 'rgba(20, 184, 166, 0.01)');
+                                gradient.addColorStop(0, alpha(theme.accent, 0.30));
+                                gradient.addColorStop(1, alpha(theme.accent, 0.01));
                                 return gradient;
                             },
                             fill: true,
@@ -150,8 +201,8 @@
                             borderWidth: 3,
                             pointRadius: 4,
                             pointHoverRadius: 6,
-                            pointBackgroundColor: '#ffffff',
-                            pointBorderColor: '#0d9488',
+                            pointBackgroundColor: theme.card,
+                            pointBorderColor: theme.accent,
                             pointBorderWidth: 2
                         }]
                     },
@@ -162,12 +213,8 @@
                         plugins: {
                             legend: { display: false },
                             tooltip: {
-                                backgroundColor: '#0f172a',
-                                padding: 12,
-                                cornerRadius: 10,
+                                ...baseTooltip,
                                 displayColors: false,
-                                titleFont: { family: bodyFont, weight: '700' },
-                                bodyFont: { family: bodyFont },
                                 callbacks: {
                                     label: (context) => `${context.parsed.y} atenciones`
                                 }
@@ -177,17 +224,18 @@
                             x: {
                                 grid: { display: false },
                                 border: { display: false },
-                                ticks: { color: '#94a3b8', font: { family: bodyFont, size: 11, weight: '600' } }
+                                ticks: { color: theme.muted, font: { family: font, size: 11, weight: '600' } }
                             },
                             y: {
                                 beginAtZero: true,
-                                ticks: { precision: 0, color: '#94a3b8', font: { family: bodyFont, size: 11 } },
+                                ticks: { precision: 0, color: theme.muted, font: { family: font, size: 11 } },
                                 border: { display: false },
-                                grid: { color: '#eef2f5' }
+                                grid: { color: theme.line }
                             }
                         }
                     }
                 });
+                chartInstances.push(monthlyChart);
             }
         }
 
@@ -200,6 +248,8 @@
                 categoryCanvas.classList.add('d-none');
                 legend.innerHTML = App.emptyState('bi-pie-chart', 'Sin datos todavía', 'Registra atenciones para ver la distribución.');
             } else {
+                categoryCanvas.classList.remove('d-none');
+                const palette = theme.palette;
                 const categoryTotal = data.categories.values.reduce((sum, value) => sum + Number(value), 0);
                 const centerText = {
                     id: 'centerText',
@@ -210,17 +260,17 @@
                         const centerY = (chartArea.top + chartArea.bottom) / 2;
                         ctx.textAlign = 'center';
                         ctx.textBaseline = 'middle';
-                        ctx.fillStyle = '#0f172a';
-                        ctx.font = `800 26px ${bodyFont}`;
+                        ctx.fillStyle = theme.ink;
+                        ctx.font = `800 26px ${font}`;
                         ctx.fillText(String(categoryTotal), centerX, centerY - 7);
-                        ctx.fillStyle = '#94a3b8';
-                        ctx.font = `600 10px ${bodyFont}`;
+                        ctx.fillStyle = theme.muted;
+                        ctx.font = `600 10px ${font}`;
                         ctx.fillText('APLICACIONES', centerX, centerY + 13);
                         ctx.restore();
                     }
                 };
 
-                new Chart(categoryCanvas, {
+                const categoryChart = new Chart(categoryCanvas, {
                     type: 'doughnut',
                     data: {
                         labels: data.categories.labels,
@@ -238,16 +288,15 @@
                         plugins: {
                             legend: { display: false },
                             tooltip: {
-                                backgroundColor: '#0f172a',
+                                ...baseTooltip,
                                 padding: 10,
-                                cornerRadius: 9,
-                                titleFont: { family: bodyFont, weight: '700' },
-                                bodyFont: { family: bodyFont }
+                                cornerRadius: 9
                             }
                         }
                     },
                     plugins: [centerText]
                 });
+                chartInstances.push(categoryChart);
 
                 legend.innerHTML = data.categories.labels.map((label, index) => {
                     const value = Number(data.categories.values[index]);
@@ -262,6 +311,10 @@
             }
         }
     };
+
+    document.addEventListener('dh:themechange', () => {
+        if (latestChartData) initCharts(latestChartData);
+    });
 
     const load = async () => {
         try {

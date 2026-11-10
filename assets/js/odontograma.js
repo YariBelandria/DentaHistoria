@@ -29,8 +29,8 @@
         { key: 'endodoncia', label: 'Endodoncia', color: '#7c3aed' },
         { key: 'extraccion', label: 'Extracción', color: '#475569' },
         { key: 'ausente', label: 'Ausente', color: '#94a3b8' },
-        { key: 'implante', label: 'Implante', color: '#0f766e' },
-        { key: 'sellante', label: 'Sellante', color: '#0891b2' }
+        { key: 'implante', label: 'Implante', color: '#1a5ab0' },
+        { key: 'sellante', label: 'Sellante', color: '#2eb7ec' }
     ];
 
     const stateMeta = (key) => STATES.find((item) => item.key === key) || STATES[0];

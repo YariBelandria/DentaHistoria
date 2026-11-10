@@ -76,10 +76,10 @@ class ClinicalHistoryPDF extends FPDF
 
     public function Header(): void
     {
-        $this->SetFillColor(13, 74, 72);
+        $this->SetFillColor(12, 31, 57);
         $this->Rect(0, 0, 210, 35, 'F');
 
-        $this->SetFillColor(20, 184, 166);
+        $this->SetFillColor(86, 200, 245);
         $this->Rect(0, 35, 210, 1.4, 'F');
 
         $logo = dirname(__DIR__) . '/assets/img/logo-pdf.png';
@@ -93,12 +93,12 @@ class ClinicalHistoryPDF extends FPDF
         $this->Cell(0, 7, pdf_text($this->clinicName));
 
         $this->SetFont('Helvetica', '', 8);
-        $this->SetTextColor(204, 251, 241);
+        $this->SetTextColor(185, 230, 255);
         $this->SetXY(37, 15);
         $this->Cell(0, 4, pdf_text($this->specialty . '  ·  ' . $this->phone));
 
         $this->SetFont('Helvetica', '', 7.5);
-        $this->SetTextColor(178, 235, 228);
+        $this->SetTextColor(143, 220, 255);
         $this->SetXY(37, 20);
         $this->Cell(0, 4, pdf_text($this->address));
 
@@ -108,25 +108,25 @@ class ClinicalHistoryPDF extends FPDF
         $this->Cell(60, 5, pdf_text('HISTORIA CLÍNICA'), 0, 0, 'R');
 
         $this->SetFont('Helvetica', '', 8);
-        $this->SetTextColor(204, 251, 241);
+        $this->SetTextColor(185, 230, 255);
         $this->SetXY(136, 15);
         $this->Cell(60, 4, pdf_text('Código: ' . $this->code), 0, 0, 'R');
         $this->SetXY(136, 20);
         $this->Cell(60, 4, pdf_text('Generado: ' . date('d/m/Y')), 0, 0, 'R');
 
         $this->SetY(43);
-        $this->SetTextColor(30, 41, 59);
+        $this->SetTextColor(18, 35, 60);
     }
 
     public function Footer(): void
     {
         $this->SetY(-17);
-        $this->SetDrawColor(226, 232, 240);
+        $this->SetDrawColor(215, 229, 244);
         $this->Line(15, $this->GetY(), 195, $this->GetY());
 
         $this->SetY(-13);
         $this->SetFont('Helvetica', '', 7);
-        $this->SetTextColor(100, 116, 139);
+        $this->SetTextColor(93, 115, 145);
         $this->Cell(0, 4, pdf_text($this->clinicName . '  ·  ' . $this->phone . '  ·  ' . $this->email));
 
         $this->SetY(-9);
@@ -137,21 +137,21 @@ class ClinicalHistoryPDF extends FPDF
     public function sectionTitle(string $title): void
     {
         $this->SetFont('Helvetica', 'B', 10);
-        $this->SetTextColor(15, 118, 110);
+        $this->SetTextColor(26, 90, 176);
         $this->Cell(0, 6, pdf_text($title), 0, 1);
-        $this->SetDrawColor(204, 251, 241);
+        $this->SetDrawColor(185, 230, 255);
         $this->Line(15, $this->GetY(), 195, $this->GetY());
         $this->Ln(2);
-        $this->SetTextColor(30, 41, 59);
+        $this->SetTextColor(18, 35, 60);
     }
 
     public function labelValue(string $label, string $value, float $labelWidth = 30): void
     {
         $this->SetFont('Helvetica', 'B', 8);
-        $this->SetTextColor(100, 116, 139);
+        $this->SetTextColor(93, 115, 145);
         $this->Cell($labelWidth, 4.5, pdf_text($label));
         $this->SetFont('Helvetica', '', 9);
-        $this->SetTextColor(30, 41, 59);
+        $this->SetTextColor(18, 35, 60);
         $this->Cell(0, 4.5, pdf_text($value), 0, 1);
     }
 
@@ -160,14 +160,14 @@ class ClinicalHistoryPDF extends FPDF
         $y = $this->GetY();
 
         $this->SetFont('Helvetica', 'B', 7.5);
-        $this->SetTextColor(100, 116, 139);
+        $this->SetTextColor(93, 115, 145);
         $this->SetXY(15, $y);
         $this->Cell(86, 4, pdf_text($leftLabel));
         $this->SetXY(109, $y);
         $this->Cell(86, 4, pdf_text($rightLabel));
 
         $this->SetFont('Helvetica', '', 9);
-        $this->SetTextColor(30, 41, 59);
+        $this->SetTextColor(18, 35, 60);
         $this->SetXY(15, $y + 4.2);
         $this->MultiCell(86, 4.4, pdf_text($leftValue !== '' ? $leftValue : 'No registrado'));
         $leftEnd = $this->GetY();
@@ -200,23 +200,23 @@ $pdf->SetAutoPageBreak(true, 21);
 $pdf->AddPage();
 
 // Ficha del paciente
-$pdf->SetFillColor(247, 250, 251);
+$pdf->SetFillColor(241, 247, 253);
 $pdf->Rect(15, 43, 180, 34, 'F');
-$pdf->SetFillColor(15, 118, 110);
+$pdf->SetFillColor(26, 90, 176);
 $pdf->Rect(15, 43, 2, 34, 'F');
 
 $pdf->SetXY(21, 46);
 $pdf->SetFont('Helvetica', 'B', 13);
-$pdf->SetTextColor(15, 23, 42);
+$pdf->SetTextColor(18, 35, 60);
 $pdf->Cell(0, 7, pdf_text($fullName));
 
 $pdf->SetXY(21, 53);
 $pdf->SetFont('Helvetica', '', 8);
-$pdf->SetTextColor(100, 116, 139);
+$pdf->SetTextColor(93, 115, 145);
 $pdf->Cell(0, 4, pdf_text('Código ' . $pdf->code . '   ·   Documento ' . ($patient['documento'] ?: 'No registrado')));
 
 $pdf->SetFont('Helvetica', '', 9);
-$pdf->SetTextColor(51, 65, 85);
+$pdf->SetTextColor(51, 74, 102);
 $pdf->SetXY(21, 60);
 $pdf->Cell(86, 4.5, pdf_text('Edad: ' . ($age === null ? 'No registrada' : $age . ' años') . '   ·   Sexo: ' . sexo_label($patient['sexo'])));
 $pdf->SetXY(109, 60);
@@ -252,17 +252,17 @@ $summaryItems = [
 
 foreach ($summaryItems as $index => $item) {
     $x = 15 + ($index * ($boxWidth + 2));
-    $pdf->SetFillColor(240, 253, 250);
+    $pdf->SetFillColor(238, 246, 255);
     $pdf->Rect($x, $summaryY, $boxWidth, 16, 'F');
-    $pdf->SetFillColor(20, 184, 166);
+    $pdf->SetFillColor(86, 200, 245);
     $pdf->Rect($x, $summaryY, $boxWidth, 1.2, 'F');
     $pdf->SetXY($x + 4, $summaryY + 3.5);
     $pdf->SetFont('Helvetica', 'B', 12);
-    $pdf->SetTextColor(15, 118, 110);
+    $pdf->SetTextColor(26, 90, 176);
     $pdf->Cell($boxWidth - 8, 5, pdf_text($item[1]));
     $pdf->SetXY($x + 4, $summaryY + 9.5);
     $pdf->SetFont('Helvetica', '', 7);
-    $pdf->SetTextColor(100, 116, 139);
+    $pdf->SetTextColor(93, 115, 145);
     $pdf->Cell($boxWidth - 8, 4, pdf_text($item[0]));
 }
 $pdf->SetY($summaryY + 21);
@@ -274,20 +274,20 @@ if ($pdf->GetY() > 218) {
 
 $pdf->sectionTitle('ODONTOGRAMA');
 $pdf->SetFont('Helvetica', '', 7.5);
-$pdf->SetTextColor(100, 116, 139);
+$pdf->SetTextColor(93, 115, 145);
 $pdf->Cell(0, 4, pdf_text('Estado actual de las 32 piezas permanentes (numeración FDI).'), 0, 1);
 $pdf->Ln(2);
 
 $stateLabels = dental_states();
 $stateColors = [
-    'sano'       => [[226, 232, 240], [71, 85, 105]],
+    'sano'       => [[215, 229, 244], [51, 74, 102]],
     'caries'     => [[239, 68, 68], [255, 255, 255]],
     'obturado'   => [[37, 99, 235], [255, 255, 255]],
     'corona'     => [[217, 119, 6], [255, 255, 255]],
     'endodoncia' => [[124, 58, 237], [255, 255, 255]],
-    'extraccion' => [[100, 116, 139], [255, 255, 255]],
-    'ausente'    => [[203, 213, 225], [71, 85, 105]],
-    'implante'   => [[15, 118, 110], [255, 255, 255]],
+    'extraccion' => [[93, 115, 145], [255, 255, 255]],
+    'ausente'    => [[203, 213, 225], [51, 74, 102]],
+    'implante'   => [[26, 90, 176], [255, 255, 255]],
     'sellante'   => [[8, 145, 178], [255, 255, 255]],
 ];
 
@@ -326,7 +326,7 @@ foreach ($teethRows as $rowIndex => $teeth) {
 
 $pdf->Ln(1);
 $pdf->SetFont('Helvetica', '', 6.8);
-$pdf->SetTextColor(100, 116, 139);
+$pdf->SetTextColor(93, 115, 145);
 $pdf->MultiCell(180, 3.6, pdf_text('Referencias: ' . implode('  ·  ', array_values($stateLabels))), 0, 'L');
 
 $findings = array_filter($chart, static function ($item) {
@@ -336,7 +336,7 @@ $findings = array_filter($chart, static function ($item) {
 $pdf->Ln(1.5);
 if ($findings) {
     $pdf->SetFont('Helvetica', 'B', 7);
-    $pdf->SetTextColor(15, 118, 110);
+    $pdf->SetTextColor(26, 90, 176);
     $pdf->Cell(0, 4, 'HALLAZGOS REGISTRADOS', 0, 1);
     foreach ($findings as $tooth => $item) {
         $label = 'Pieza ' . $tooth . ' · ' . ($stateLabels[$item['estado']] ?? $item['estado']);
@@ -345,12 +345,12 @@ if ($findings) {
         }
         $pdf->SetX(15);
         $pdf->SetFont('Helvetica', '', 7.5);
-        $pdf->SetTextColor(51, 65, 85);
+        $pdf->SetTextColor(51, 74, 102);
         $pdf->MultiCell(180, 4, pdf_text($label));
     }
 } else {
     $pdf->SetFont('Helvetica', '', 7.5);
-    $pdf->SetTextColor(100, 116, 139);
+    $pdf->SetTextColor(93, 115, 145);
     $pdf->Cell(0, 4, pdf_text('Sin hallazgos registrados: todas las piezas se encuentran sanas.'), 0, 1);
 }
 
@@ -359,13 +359,13 @@ $pdf->Ln(3);
 // Historia clínica
 $pdf->sectionTitle('HISTORIA CLÍNICA ODONTOLÓGICA');
 $pdf->SetFont('Helvetica', '', 8);
-$pdf->SetTextColor(100, 116, 139);
+$pdf->SetTextColor(93, 115, 145);
 $pdf->Cell(0, 4, pdf_text(count($records) . ' atención(es) registrada(s)'), 0, 1);
 $pdf->Ln(3);
 
 if (!$records) {
     $pdf->SetFont('Helvetica', '', 10);
-    $pdf->SetTextColor(100, 116, 139);
+    $pdf->SetTextColor(93, 115, 145);
     $pdf->Cell(0, 10, pdf_text('El paciente aún no tiene atenciones registradas.'), 0, 1);
 }
 
@@ -380,7 +380,7 @@ foreach ($records as $record) {
     $startY = $pdf->GetY();
 
     // Fecha
-    $pdf->SetFillColor(15, 118, 110);
+    $pdf->SetFillColor(26, 90, 176);
     $pdf->Rect(15, $startY, 27, 11, 'F');
     $pdf->SetXY(15, $startY + 1.7);
     $pdf->SetFont('Helvetica', 'B', 10);
@@ -392,7 +392,7 @@ foreach ($records as $record) {
 
     // Estado
     $status = $record['estado'] ?: 'realizado';
-    $color = $statusColors[$status] ?? [100, 116, 139];
+    $color = $statusColors[$status] ?? [93, 115, 145];
     $pdf->SetFont('Helvetica', 'B', 7);
     $pdf->SetTextColor($color[0], $color[1], $color[2]);
     $pdf->SetXY(140, $startY + 1);
@@ -401,21 +401,21 @@ foreach ($records as $record) {
     // Motivo
     $pdf->SetXY(46, $startY);
     $pdf->SetFont('Helvetica', 'B', 10);
-    $pdf->SetTextColor(15, 23, 42);
+    $pdf->SetTextColor(18, 35, 60);
     $pdf->MultiCell(149, 5, pdf_text($record['motivo'] ?: 'Consulta odontológica'));
 
     $pdf->SetX(46);
     $pdf->SetFont('Helvetica', '', 7.5);
-    $pdf->SetTextColor(100, 116, 139);
+    $pdf->SetTextColor(93, 115, 145);
     $pdf->Cell(0, 4, pdf_text('Odontólogo: ' . ($record['odontologo'] ?: 'No registrado') . '   ·   Piezas: ' . ($record['dientes'] ?: 'No especificadas')), 0, 1);
 
     if (!empty($record['procedimientos'])) {
         $pdf->SetX(46);
         $pdf->SetFont('Helvetica', 'B', 7.5);
-        $pdf->SetTextColor(15, 118, 110);
+        $pdf->SetTextColor(26, 90, 176);
         $pdf->Cell(28, 4, 'PROCEDIMIENTOS');
         $pdf->SetFont('Helvetica', '', 8);
-        $pdf->SetTextColor(51, 65, 85);
+        $pdf->SetTextColor(51, 74, 102);
         $pdf->MultiCell(121, 4, pdf_text($record['procedimientos']));
     }
 
@@ -427,10 +427,10 @@ foreach ($records as $record) {
         if (!empty($record[$field])) {
             $pdf->SetX(46);
             $pdf->SetFont('Helvetica', 'B', 7.5);
-            $pdf->SetTextColor(100, 116, 139);
+            $pdf->SetTextColor(93, 115, 145);
             $pdf->Cell(24, 4, pdf_text($label));
             $pdf->SetFont('Helvetica', '', 8);
-            $pdf->SetTextColor(51, 65, 85);
+            $pdf->SetTextColor(51, 74, 102);
             $pdf->MultiCell(125, 4, pdf_text($record[$field]));
         }
     }
@@ -438,15 +438,15 @@ foreach ($records as $record) {
     if (!empty($record['proxima_cita'])) {
         $pdf->SetX(46);
         $pdf->SetFont('Helvetica', 'B', 7.5);
-        $pdf->SetTextColor(100, 116, 139);
+        $pdf->SetTextColor(93, 115, 145);
         $pdf->Cell(24, 4, pdf_text('PRÓXIMA CITA'));
         $pdf->SetFont('Helvetica', '', 8);
-        $pdf->SetTextColor(51, 65, 85);
+        $pdf->SetTextColor(51, 74, 102);
         $pdf->Cell(125, 4, pdf_text(format_date($record['proxima_cita'])), 0, 1);
     }
 
     $pdf->Ln(2);
-    $pdf->SetDrawColor(226, 232, 240);
+    $pdf->SetDrawColor(215, 229, 244);
     $pdf->Line(15, $pdf->GetY(), 195, $pdf->GetY());
     $pdf->Ln(4);
 }
@@ -460,7 +460,7 @@ $pdf->SetDrawColor(148, 163, 184);
 $pdf->Line(120, $pdf->GetY(), 195, $pdf->GetY());
 $pdf->Ln(2);
 $pdf->SetFont('Helvetica', '', 8);
-$pdf->SetTextColor(100, 116, 139);
+$pdf->SetTextColor(93, 115, 145);
 $pdf->SetX(120);
 $pdf->Cell(75, 4, pdf_text('Firma y sello del odontólogo'), 0, 1, 'C');
 $pdf->SetX(120);
