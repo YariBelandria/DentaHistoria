@@ -3167,7 +3167,7 @@ a {
     border-radius: 999px;
     background: rgba(86, 200, 245, 0.12);
     border: 1px solid rgba(143, 220, 255, 0.2);
-    color: var(--celeste-200);
+    color: #b9e6ff;
     font-size: 0.61rem;
     font-weight: 700;
     letter-spacing: 0.06em;
@@ -3184,13 +3184,13 @@ a {
 }
 
 .showcase-content h1 span {
-    color: var(--celeste-300);
+    color: #8fdcff;
 }
 
 .showcase-content > p {
     font-size: 0.87rem;
     line-height: 1.75;
-    color: rgba(42, 61, 89, 0.66);
+    color: rgba(216, 234, 252, 0.85);
     max-width: 450px;
     margin: 0 0 22px;
 }
@@ -3210,7 +3210,7 @@ a {
     gap: 9px;
     font-size: 0.75rem;
     font-weight: 600;
-    color: rgba(34, 52, 79, 0.82);
+    color: rgba(226, 240, 255, 0.88);
 }
 
 .showcase-list li span {
@@ -3218,7 +3218,7 @@ a {
     height: 20px;
     border-radius: 7px;
     background: rgba(143, 220, 255, 0.14);
-    color: var(--celeste-300);
+    color: #8fdcff;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -3264,7 +3264,7 @@ a {
     height: 31px;
     border-radius: 9px;
     background: rgba(47, 140, 232, 0.2);
-    color: var(--celeste-300);
+    color: #8fdcff;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -3285,7 +3285,7 @@ a {
 
 .record-top small {
     font-size: 0.53rem;
-    color: rgba(116, 139, 168, 0.55);
+    color: rgba(178, 200, 224, 0.72);
 }
 
 .record-status {
@@ -3295,7 +3295,7 @@ a {
     gap: 4px;
     font-size: 0.52rem;
     font-weight: 700;
-    color: var(--celeste-200);
+    color: #b9e6ff;
     background: rgba(16, 185, 129, 0.12);
     padding: 3px 7px;
     border-radius: 999px;
@@ -3340,7 +3340,7 @@ a {
 
 .record-patient small {
     font-size: 0.52rem;
-    color: rgba(116, 139, 168, 0.55);
+    color: rgba(178, 200, 224, 0.72);
 }
 
 .record-line {
@@ -3349,7 +3349,7 @@ a {
     justify-content: space-between;
     gap: 8px;
     font-size: 0.53rem;
-    color: rgba(42, 61, 89, 0.62);
+    color: rgba(216, 234, 252, 0.8);
     padding: 5px 0;
 }
 
@@ -3360,12 +3360,12 @@ a {
 }
 
 .record-line i {
-    color: var(--celeste-300);
+    color: #8fdcff;
 }
 
 .mini-badge {
     background: rgba(86, 200, 245, 0.14);
-    color: var(--celeste-200);
+    color: #b9e6ff;
     padding: 2px 6px;
     border-radius: 5px;
     font-size: 0.5rem;
@@ -3390,7 +3390,7 @@ a {
     width: 72%;
     height: 100%;
     border-radius: inherit;
-    background: linear-gradient(90deg, var(--brand-500), var(--celeste-300));
+    background: linear-gradient(90deg, #2f8ce8, #8fdcff);
 }
 
 .tooth-card {
@@ -3416,7 +3416,7 @@ a {
 .tooth-graphic svg {
     width: 27px;
     height: 27px;
-    fill: var(--celeste-300);
+    fill: #8fdcff;
 }
 
 .tooth-copy {
@@ -3431,7 +3431,7 @@ a {
 
 .tooth-copy small {
     font-size: 0.5rem;
-    color: rgba(116, 139, 168, 0.55);
+    color: rgba(178, 200, 224, 0.72);
 }
 
 .tooth-pills {
@@ -3446,7 +3446,7 @@ a {
     border-radius: 4px;
     background: rgba(47, 140, 232, 0.25);
     border: 1px solid rgba(143, 220, 255, 0.25);
-    color: var(--celeste-200);
+    color: #b9e6ff;
     font-size: 0.45rem;
     font-weight: 700;
     display: inline-flex;
@@ -3462,11 +3462,11 @@ a {
     gap: 5px;
     margin: 18px 0 0;
     font-size: 0.55rem;
-    color: rgba(116, 139, 168, 0.55);
+    color: rgba(151, 183, 214, 0.75);
 }
 
 .showcase-foot i {
-    color: var(--celeste-300);
+    color: #8fdcff;
 }
 
 .login-panel {
@@ -3784,9 +3784,9 @@ a {
     justify-content: center;
     padding: 20px 18px;
     background:
-        radial-gradient(620px 420px at 12% 8%, rgba(47, 140, 232, 0.35), transparent 62%),
-        radial-gradient(560px 380px at 92% 92%, rgba(14, 165, 233, 0.22), transparent 60%),
-        linear-gradient(145deg, #071a30 0%, #0a2444 48%, #0e3156 100%);
+        radial-gradient(620px 420px at 12% 8%, rgba(86, 200, 245, 0.42), transparent 62%),
+        radial-gradient(560px 380px at 92% 92%, rgba(47, 140, 232, 0.32), transparent 60%),
+        linear-gradient(160deg, #cfe6ff 0%, #e7f3ff 52%, #cbe7ff 100%);
 }
 
 .register-card {
@@ -3794,8 +3794,9 @@ a {
     max-width: 470px;
     padding: 24px 32px 20px;
     background: var(--card);
+    border: 1px solid rgba(255, 255, 255, 0.9);
     border-radius: 22px;
-    box-shadow: 0 34px 80px -34px rgba(8, 23, 41, 0.75);
+    box-shadow: 0 34px 80px -34px rgba(23, 74, 143, 0.34);
 }
 
 .register-card .brand {
@@ -3859,6 +3860,17 @@ a {
     .register-card {
         padding: 22px 20px 18px;
         border-radius: 18px;
+        text-align: center;
+    }
+
+    .register-form {
+        text-align: left;
+    }
+
+    .register-card .brand {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
     }
 }
 
@@ -5065,28 +5077,28 @@ h6,
 }
 
 .showcase-content h1 span {
-    color: var(--celeste-300);
+    color: #8fdcff;
 }
 
 .showcase-badge {
     background: rgba(86, 200, 245, 0.12);
     border-color: rgba(143, 220, 255, 0.24);
-    color: var(--celeste-200);
+    color: #b9e6ff;
 }
 
 .showcase-list li span {
     background: rgba(143, 220, 255, 0.14);
-    color: var(--celeste-300);
+    color: #8fdcff;
 }
 
 .showcase-foot i,
 .record-line i {
-    color: var(--celeste-300);
+    color: #8fdcff;
 }
 
 .record-icon {
     background: rgba(47, 140, 232, 0.2);
-    color: var(--celeste-300);
+    color: #8fdcff;
 }
 
 .mini-avatar {
@@ -5094,21 +5106,21 @@ h6,
 }
 
 .record-progress span {
-    background: linear-gradient(90deg, var(--brand-500), var(--celeste-300));
+    background: linear-gradient(90deg, #2f8ce8, #8fdcff);
 }
 
 .record-status {
-    color: var(--celeste-200);
+    color: #b9e6ff;
     background: rgba(47, 140, 232, 0.16);
 }
 
 .record-status span {
-    background: var(--celeste-300);
+    background: #8fdcff;
 }
 
 .mini-badge {
     background: rgba(86, 200, 245, 0.16);
-    color: var(--celeste-200);
+    color: #b9e6ff;
 }
 
 .mini-badge-blue {
@@ -5121,20 +5133,20 @@ h6,
 }
 
 .tooth-graphic svg {
-    fill: var(--celeste-300);
+    fill: #8fdcff;
 }
 
 .tooth-pills span {
     background: rgba(47, 140, 232, 0.26);
     border-color: rgba(143, 220, 255, 0.28);
-    color: var(--celeste-200);
+    color: #b9e6ff;
 }
 
 .register-shell {
     background:
-        radial-gradient(620px 420px at 12% 8%, rgba(86, 200, 245, 0.34), transparent 62%),
-        radial-gradient(560px 380px at 92% 92%, rgba(47, 140, 232, 0.24), transparent 60%),
-        linear-gradient(145deg, #071a30 0%, #0a2444 48%, #0e3156 100%);
+        radial-gradient(620px 420px at 12% 8%, rgba(86, 200, 245, 0.42), transparent 62%),
+        radial-gradient(560px 380px at 92% 92%, rgba(47, 140, 232, 0.32), transparent 60%),
+        linear-gradient(160deg, #cfe6ff 0%, #e7f3ff 52%, #cbe7ff 100%);
 }
 
 .login-body {
@@ -5253,6 +5265,58 @@ h6,
 [data-theme="dark"] ::selection {
     background: var(--brand-300);
     color: #06121f;
+}
+
+[data-theme="dark"] .register-card {
+    border-color: rgba(143, 220, 255, 0.16);
+}
+
+/* ============================================================
+   Autenticación · vista móvil
+   El panel izquierdo desaparece, así que la pantalla completa
+   recibe un fondo celeste difuminado y el contenido se centra.
+   ============================================================ */
+@media (max-width: 991.98px) {
+    .login-panel {
+        background:
+            radial-gradient(680px 460px at 50% -12%, rgba(86, 200, 245, 0.45), transparent 68%),
+            radial-gradient(540px 420px at 112% 114%, rgba(47, 140, 232, 0.32), transparent 62%),
+            linear-gradient(172deg, #cfe6ff 0%, #e6f3ff 50%, #cbe7ff 100%);
+    }
+
+    .login-card {
+        background: rgba(255, 255, 255, 0.87);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border: 1px solid rgba(255, 255, 255, 0.95);
+        border-radius: 24px;
+        padding: 28px 24px 20px;
+        box-shadow: 0 34px 80px -36px rgba(23, 74, 143, 0.42);
+        text-align: center;
+    }
+
+    .login-card form {
+        text-align: left;
+    }
+
+    .login-mobile-brand {
+        flex-direction: column;
+        gap: 9px;
+        margin-bottom: 22px;
+    }
+
+    [data-theme="dark"] .login-panel {
+        background:
+            radial-gradient(680px 460px at 50% -12%, rgba(86, 200, 245, 0.15), transparent 68%),
+            radial-gradient(540px 420px at 112% 114%, rgba(47, 140, 232, 0.12), transparent 62%),
+            linear-gradient(172deg, #0a1424 0%, #101b2d 50%, #0c1a2e 100%);
+    }
+
+    [data-theme="dark"] .login-card {
+        background: rgba(23, 37, 59, 0.88);
+        border-color: rgba(143, 220, 255, 0.16);
+        box-shadow: 0 34px 80px -36px rgba(2, 10, 20, 0.85);
+    }
 }
 
 @media (max-width: 575.98px) {
