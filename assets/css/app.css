@@ -328,6 +328,30 @@ a {
     box-shadow: 0 0 0 4px rgba(36, 120, 221, 0.12);
 }
 
+/* Autocompletado del navegador: fuerza el tema para que la letra
+   siempre sea legible (evita texto invisible al escribir). */
+.form-control:-webkit-autofill,
+.form-control:-webkit-autofill:hover,
+.form-control:-webkit-autofill:focus,
+.form-select:-webkit-autofill,
+textarea:-webkit-autofill {
+    -webkit-text-fill-color: var(--ink);
+    -webkit-box-shadow: 0 0 0 1000px var(--field) inset;
+    caret-color: var(--ink);
+    transition: background-color 9999s ease-out;
+}
+
+/* Refuerzo en modo oscuro: el texto de los controles sigue la tinta del tema. */
+[data-theme="dark"] .form-control,
+[data-theme="dark"] .form-select {
+    color: var(--ink);
+    caret-color: var(--ink);
+}
+
+[data-theme="dark"] .form-control::placeholder {
+    color: var(--muted-light);
+}
+
 .form-control.is-invalid,
 .form-select.is-invalid {
     border-color: var(--danger);
@@ -3995,13 +4019,59 @@ a {
         grid-template-columns: 1fr;
     }
 
+    /* En móvil/tablet el panel azul se muestra compacto encima del
+       formulario en vez de desaparecer. */
     .login-showcase {
+        padding: 30px 26px 24px;
+        background:
+            radial-gradient(520px 320px at 85% 0%, rgba(86, 200, 245, 0.32), transparent 65%),
+            radial-gradient(420px 300px at 5% 110%, rgba(47, 140, 232, 0.24), transparent 60%),
+            linear-gradient(160deg, #0a2444 0%, #0e3156 58%, #123c68 100%);
+    }
+
+    .brand-light,
+    .showcase-visual,
+    .showcase-foot,
+    .showcase-orbit-1 {
         display: none;
     }
 
+    .showcase-content {
+        margin-top: 0;
+        max-width: 620px;
+        text-align: center;
+    }
+
+    .showcase-content h1 {
+        font-size: clamp(1.55rem, 5.5vw, 2.15rem);
+        margin: 0 0 10px;
+    }
+
+    .showcase-content > p {
+        max-width: 480px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 16px;
+    }
+
+    .showcase-badge {
+        margin-bottom: 12px;
+    }
+
+    .showcase-list {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px 16px;
+    }
+
+    .showcase-list li {
+        font-size: 0.7rem;
+    }
+
     .login-panel {
-        min-height: 100vh;
-        padding: 32px 24px;
+        min-height: 0;
+        padding: 26px 20px 34px;
     }
 
     .login-mobile-brand {
